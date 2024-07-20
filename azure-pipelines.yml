@@ -16,7 +16,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'your-azure-subscription'
+    azureSubscription: 'myServiceConnection'  # Mettre à jour avec le nom de votre connexion de service
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
