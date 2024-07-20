@@ -1,0 +1,20 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    curl -s https://raw.githubusercontent.com/tfutils/tfenv/master/install.sh | bash
+    echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+    tfenv install 0.15.5
+    tfenv use 0.15.5
+    terraform version
+  displayName: 'Install Terraform'
+
+- script: |
+    terraform init
+    terraform plan
+  displayName: 'Run Terraform'
