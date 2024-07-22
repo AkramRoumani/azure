@@ -2,10 +2,12 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: default
+  demands:
+  - agent.name -equals akram
 
 steps:
-- script: echo "Hello, World!"
-  displayName: 'Run a simple Hello World script'
+- script: echo Hello World
+  displayName: 'Say Hello'
 
 
