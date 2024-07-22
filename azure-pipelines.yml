@@ -5,23 +5,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    curl -s https://raw.githubusercontent.com/tfutils/tfenv/master/install.sh | bash
-    echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bashrc
-    source ~/.bashrc
-    tfenv install latest
-    tfenv use latest
-    terraform version
-  displayName: 'Install Terraform'
-
-- task: AzureCLI@2
+- task: UsePythonVersion@0
   inputs:
-    azureSubscription: 'myServiceConnection'  # Mettre à jour avec le nom de votre connexion de service
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      az login --service-principal -u $(clientId) -p $(clientSecret) --tenant $(tenantId)
-      terraform init
-      terraform plan -out=tfplan
-      terraform apply -auto-approve tfplan
-  displayName: 'Run Terraform'
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python script.py
+  displayName: 'Run script.py'
+
