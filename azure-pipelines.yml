@@ -2,12 +2,11 @@ trigger:
 - main
 
 pool:
-  name: default
-  demands:
-  - agent.name -equals akram
+  name: Azure Pipelines
 
 steps:
 - script: echo Hello World
   displayName: 'Say Hello'
+
 
 
